@@ -1,11 +1,11 @@
 import { Routes, Route, Link } from "react-router-dom";
+import React from "react";
 import Home from './pages/Home';
 import Treatments from './pages/Treatments';
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 
-function App() {
-
+const App: React.FC = () => {
 	return (
 		<>
 			<div>
@@ -25,6 +25,6 @@ function App() {
 			</div>
 		</>
 	);
-}
+};
 
 export default App;
