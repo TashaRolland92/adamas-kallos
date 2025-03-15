@@ -18,10 +18,10 @@ const Treatments = () => {
 	useEffect(() => {
 		const fetchTreatments = async () => {
 			try {
-				console.log("Fetching from:", import.meta.env.VITE_API_BASE_URL + "/treatments");
+				// console.log("Fetching from:", import.meta.env.VITE_API_BASE_URL + "/treatments");
 
 				const data = await getAllTreatments();
-				console.log('API response', data);
+				// console.log('API response', data);
 				setTreatments(data);
 			} catch (err) {
 				setError("Failed to fetch treatments.");
