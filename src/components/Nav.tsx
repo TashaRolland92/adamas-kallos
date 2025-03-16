@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { getCategories } from "../api/categories";
-
-interface Category {
-	id: number;
-	name: string;
-}
 
 // Reusable NavLink Component
 const NavLinkItem: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -15,36 +9,27 @@ const NavLinkItem: React.FC<{ to: string; children: React.ReactNode }> = ({ to, 
 );
 
 const Nav: React.FC = () => {
-	const [categories, setCategories] = useState<Category[]>([]);
-
-	useEffect(() => {
-		const fetchCategories = async () => {
-			try {
-				const data = await getCategories();
-				setCategories(data);
-			} catch (error) {
-				console.error("Error fetching categories:", error);
-			}
-		};
-
-		fetchCategories();
-	}, []);
-
 	return (
 		<nav>
 			<ul>
 				<li><NavLinkItem to="/">Home</NavLinkItem></li>
+				<li><NavLinkItem to="/about">About</NavLinkItem></li>
 				<li>
 					Treatments
 					<ul>
-						{categories.map((category) => (
-							<li key={category.id}>
-								<NavLinkItem to={`/categories/${category.id}`}>{category.name}</NavLinkItem>
-							</li>
-						))}
+						<li><NavLinkItem to={'/beauty-treatments'}>Beauty Treatments</NavLinkItem></li>
+						<li><NavLinkItem to={'/waxing'}>Waxing</NavLinkItem></li>
+						<li><NavLinkItem to={'/massages'}>Massages</NavLinkItem></li>
+						<li><NavLinkItem to={'/facials'}>Facials</NavLinkItem></li>
+						<li><NavLinkItem to={'/laser-treatments'}>Laser Treatments</NavLinkItem></li>
+						<li><NavLinkItem to={'/aesthetic-treatments'}>Aesthetic Treatments</NavLinkItem></li>
+						<li><NavLinkItem to={'/body-sculpting'}>Body Sculpting</NavLinkItem></li>
+						<li><NavLinkItem to={'/hair-loss'}>Hair Loss</NavLinkItem></li>
+						<li><NavLinkItem to={'/treatments'}>All Treatments</NavLinkItem></li>
 					</ul>
 				</li>
 				<li><NavLinkItem to="/booking">Book Online</NavLinkItem></li>
+				<li><NavLinkItem to="/offers">Offers</NavLinkItem></li>
 				<li><NavLinkItem to="/contact">Contact</NavLinkItem></li>
 			</ul>
 		</nav>
