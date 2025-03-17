@@ -2,20 +2,37 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 // Reusable NavLink Component
-const NavLinkItem: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
-	<NavLink to={to} className={({ isActive }) => (isActive ? "active" : "")}>
-		{children}
-	</NavLink>
-);
+const NavLinkItem: React.FC<{ to: string; children: React.ReactNode }> = ({
+	to,
+	children,
+}) => {
+	const handleClick = (e: React.MouseEvent) => {
+		if (!to) {
+			e.preventDefault();
+		}
+	};
+
+	return(
+		<NavLink
+			to={to || ""}
+			onClick={handleClick}
+			className={({ isActive }) =>
+				`transition-opacity duration-300 group-hover:opacity-50 group-hover:hover:opacity-100 hover:opacity-100 ${isActive ? "active" : ""
+				}`
+			}>
+			{children}
+		</NavLink>
+	);
+};
 
 const Nav: React.FC = () => {
 	return (
-		<nav>
-			<ul className="flex flex-row gap-x-2.5">
+		<nav className="group">
+			<ul className="flex flex-row gap-x-4 flex-wrap playfair-600 uppercase text-lg">
 				<li><NavLinkItem to="/">Home</NavLinkItem></li>
 				<li><NavLinkItem to="/about">About</NavLinkItem></li>
 				<li>
-					Treatments
+					<NavLinkItem to={''}>Treatments</NavLinkItem>
 					<ul className="absolute hidden">
 						<li><NavLinkItem to={'/beauty-treatments'}>Beauty Treatments</NavLinkItem></li>
 						<li><NavLinkItem to={'/waxing'}>Waxing</NavLinkItem></li>
