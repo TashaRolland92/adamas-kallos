@@ -18,6 +18,14 @@ export default {
 			tiffanyblue: "#71d5e4",
 			bluegreen: "#00b6bc",
 		},
+		backgroundImage: {
+			'hero-mobile': "url('/src/assets/hero_mobile.webp')",
+			'hero-desktop': "url('/src/assets/hero_desktop.webp')",
+			'hero-4k': "url('/src/assets/hero_4k.webp')",
+		},
+		screens: {
+			'retina': {'raw': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'},
+		},
 	  },
 	},
 	plugins: [
@@ -32,18 +40,18 @@ export default {
 
 			const newUtilities = {
 			  // Playfair Display
-			  ".playfair-regular": generateFontClass(["Playfair Display", "serif"], 400),
-			  ".playfair-500": generateFontClass(["Playfair Display", "serif"], 500),
-			  ".playfair-600": generateFontClass(["Playfair Display", "serif"], 600),
-			  ".playfair-700": generateFontClass(["Playfair Display", "serif"], 700),
-			  ".playfair-800": generateFontClass(["Playfair Display", "serif"], 800),
-			  ".playfair-900": generateFontClass(["Playfair Display", "serif"], 900),
-			  ".playfair-italic-400": generateFontClass(["Playfair Display", "serif"], 400, "italic"),
-			  ".playfair-italic-700": generateFontClass(["Playfair Display", "serif"], 700, "italic"),
-			  ".playfair-italic-900": generateFontClass(["Playfair Display", "serif"], 900, "italic"),
+			  ".playfair": generateFontClass(["Playfair Display"], 400),
+			  ".playfair-500": generateFontClass(["Playfair Display"], 500),
+			  ".playfair-600": generateFontClass(["Playfair Display"], 600),
+			  ".playfair-700": generateFontClass(["Playfair Display"], 700),
+			  ".playfair-800": generateFontClass(["Playfair Display"], 800),
+			  ".playfair-900": generateFontClass(["Playfair Display"], 900),
+			  ".playfair-italic-400": generateFontClass(["Playfair Display"], 400, "italic"),
+			  ".playfair-italic-700": generateFontClass(["Playfair Display"], 700, "italic"),
+			  ".playfair-italic-900": generateFontClass(["Playfair Display"], 900, "italic"),
 
 			  // Lato
-			  ".lato-regular": generateFontClass(["Lato", "sans-serif"], 400),
+			  ".lato": generateFontClass(["Lato", "sans-serif"], 400),
 			  ".lato-700": generateFontClass(["Lato", "sans-serif"], 700),
 			  ".lato-italic-400": generateFontClass(["Lato", "sans-serif"], 400, "italic"),
 			  ".lato-italic-700": generateFontClass(["Lato", "sans-serif"], 700, "italic"),
