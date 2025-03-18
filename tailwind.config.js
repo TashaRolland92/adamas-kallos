@@ -23,6 +23,9 @@ export default {
 			'hero-desktop': "url('/src/assets/hero_desktop.webp')",
 			'hero-4k': "url('/src/assets/hero_4k.webp')",
 		},
+		transitionProperty: {
+			'width': 'width',
+		},
 		screens: {
 			'retina': {'raw': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'},
 		},
