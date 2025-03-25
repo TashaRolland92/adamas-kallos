@@ -1,85 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchNavigation } from "../services/contentfulNav";
+import { NavigationLink } from "../types/contentful";
 import { NavLink } from "react-router-dom";
 
 const Nav: React.FC = () => {
 	const [mobileOpen, setMobileOpen] = useState(false);
-	const [hoveredMenu, setHoveredMenu] = useState<string | null>("treatments");
-
-	const navItems = [
-		"Home",
-		"About",
-		"Treatments",
-		"Offers",
-		"Contact",
-		"Book Online"
-	];
+	const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
+	const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+	const [navItems, setNavItems] = useState<NavigationLink[] | null>(null);
 
 	const toggleMobileMenu = () => {
 		setMobileOpen(!mobileOpen);
 	};
 
+	const toggleMobileDropdown = (id: string) => {
+		setMobileDropdown(mobileDropdown === id ? null : id);
+	};
+
+	useEffect(() => {
+		const getNavigation = async () => {
+			const navigation = await fetchNavigation();
+			if (navigation) {
+				const fetchedNavItems = navigation.fields.navItems as unknown as NavigationLink[];
+				setNavItems(fetchedNavItems);
+			}
+		};
+
+		getNavigation();
+	}, []);
+
+	if (!navItems) {
+        return <div>Loading...</div>; // Add loading state
+    }
+
 	return (
 		<nav className="relative playfair-600 uppercase text-lg">
 			{/* Desktop Menu */}
-			<ul className="hidden lg:flex gap-6 group items-center">
-				<li className="transition-opacity duration-300 opacity-100 group-hover:opacity-50 hover:!opacity-100">
-					<NavLink to="/" className="flex items-center h-20">Home</NavLink>
-				</li>
-				<li className="transition-opacity duration-300 opacity-100 group-hover:opacity-50 hover:!opacity-100">
-					<NavLink to="/about" className="flex items-center h-20">About</NavLink>
-				</li>
-				<li
-					className="transition-opacity duration-300 opacity-100 group-hover:opacity-50 hover:!opacity-100"
-					onMouseEnter={() => setHoveredMenu("treatments")}
-					onMouseLeave={() => setHoveredMenu(null)}
-				>
-					<span className="cursor-pointer flex items-center h-20">Treatments</span>
-					{/* ORIGINAL hoveredMenu ternary ${hoveredMenu === "treatments" ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4 pointer-events-none"} */}
-					<div className={`
-						submenu-container
-						fixed
-						left-0
-						right-0
-						w-screen
-						bg-babyblue
-						text-primaryContent
-						shadow-lg
-						transition-opacity
-						duration-300
-						ease-in-out
-						transform
-						${hoveredMenu === "treatments" ? "opacity-100 visible translate-y-0" : "opacity-100 visible translate-y-0"}
-					`}>
-						<div className="submenu w-full px-5 py-10 grid grid-cols-3 gap-x-2.5">
-							<NavLink to="/beauty-treatments" className="pb-2.5">Beauty Treatments</NavLink>
-							<NavLink to="/waxing" className="border-l border-r border-primaryContent pl-2.5 pb-2.5">Waxing</NavLink>
-							<NavLink to="/massages" className="pb-2.5">Massages</NavLink>
-							<NavLink to="/facials" className="pb-2.5">Facials</NavLink>
-							<NavLink to="/laser-treatments" className="border-l border-r border-primaryContent pl-2.5 pb-2.5">Laser Treatments</NavLink>
-							<NavLink to="/aesthetic-treatments" className="pb-2.5">Aesthetic Treatments</NavLink>
-							<NavLink to="/body-sculplting" className="pb-2.5">Body Sculpting</NavLink>
-							<NavLink to="/hair-loss" className="border-l border-r border-primaryContent pl-2.5 pb-2.5">Hair Loss</NavLink>
-						</div>
-					</div>
-				</li>
-				<li className="transition-opacity duration-300 opacity-100 group-hover:opacity-50 hover:!opacity-100">
-					<NavLink to="/offers" className="flex items-center h-20">Offers</NavLink>
-				</li>
-				<li className="transition-opacity duration-300 opacity-100 group-hover:opacity-50 hover:!opacity-100">
-					<NavLink to="/contact" className="flex items-center h-20">Contact</NavLink>
-				</li>
-				<li>|</li>
-				<li
-					className="relative transition-opacity duration-300 opacity-100 group-hover:opacity-50 hover:!opacity-100"
-					onMouseEnter={() => setHoveredMenu("booking")}
-					onMouseLeave={() => setHoveredMenu(null)}
-				>
-					<span className="cursor-pointer flex items-center h-20">Book Online</span>
-					<ul className={`absolute left-0 top-full bg-babyblue text-primaryContent shadow-lg p-2 ${hoveredMenu === "booking" ? "block" : "hidden"}`}>
-						<li><NavLink to="/booking">Book Now</NavLink></li>
-						<li><NavLink to="/contact">Call Us</NavLink></li>
-					</ul>
-				</li>
+			<ul className="hidden lg:flex gap-6 items-center">
+				{navItems.map((item) => (
+                    <li
+						key={item.sys.id}
+						className="relative"
+						onMouseEnter={() => setHoveredDropdown(item.sys.id)} // Set hovered dropdown ID
+						onMouseLeave={() => setHoveredDropdown(null)} // Clear hovered dropdown ID
+					>
+						{item.fields.dropdownItems ? (
+							<span className="relative flex items-center h-20 cursor-pointer">
+								{item.fields.title}
+							</span> // non-clickable link
+						) : (
+							<NavLink to={item.fields.slug} className="flex items-center h-20">{item.fields.title}</NavLink>
+						)}
+
+                        {item.fields.dropdownItems && (
+							<div className={`
+								submenu-container
+								fixed
+								left-0
+								right-0
+								w-screen
+								bg-babyblue
+								text-primaryContent
+								shadow-lg
+								transition-transform
+								duration-300
+								ease-in-out
+								${hoveredDropdown === item.sys.id ? "block scale-100" : "hidden scale-90"}
+							`}>
+								<div className="submenu w-full px-5 py-10 grid grid-cols-3 gap-x-2.5">
+									{item.fields.dropdownItems.map((dropdownItem) => (
+										<li key={dropdownItem.sys.id}>
+											<NavLink to={dropdownItem.fields.slug}>{dropdownItem.fields.title}</NavLink>
+										</li>
+									))}
+								</div>
+							</div>
+                        )}
+                    </li>
+                ))}
 			</ul>
 
 			{/* Mobile Menu Button */}
@@ -90,16 +88,51 @@ const Nav: React.FC = () => {
 			</button>
 
 			{/* Mobile Menu Overlay */}
-			<div className={`z-20 fixed inset-0 bg-babyblue transition-transform duration-700 ${mobileOpen ? "translate-x-0" : "translate-x-full"} flex flex-col lg:hidden`}>
+			<div className={`
+				z-20
+				fixed
+				inset-0
+				bg-babyblue
+				transition-transform
+				duration-700
+				${mobileOpen ? "translate-x-0" : "translate-x-full"}
+				flex
+				flex-col
+				lg:hidden
+			`}>
 				<ul className="p-5 text-2xl playfair-600 uppercase text-primaryContent">
-					{navItems.map((item, index) => (
-						<li key={index}>
-							<NavLink to={`/${item.toLowerCase().replace(/ /g, "-")}`} onClick={toggleMobileMenu} className="block mt-2.5 mb-2.5">
-								{item}
-							</NavLink>
-							{index !== navItems.length - 1 && (
-								<div className={`border border-primaryContent transition-width duration-[2000ms] ${mobileOpen ? "w-full" : "w-0"}`}></div>
+					{navItems.map((item) => (
+						<li key={item.sys.id}>
+							<div onClick={() => toggleMobileDropdown(item.sys.id)}>
+								{item.fields.dropdownItems ? (
+										<span className="cursor-pointer block mt-2.5 mb-2.5">
+										{item.fields.title}
+									</span> // non-clickable link
+								) : (
+									<NavLink
+										to={item.fields.slug}
+										onClick={toggleMobileMenu}
+										className="block mt-2.5 mb-2.5"
+									>
+										{item.fields.title}
+									</NavLink>
+								)}
+							</div>
+							{item.fields.dropdownItems && (
+								<ul className={`
+									ml-4 mb-3
+									${mobileDropdown === item.sys.id ? "block" : "hidden"}
+								`}>
+									{item.fields.dropdownItems.map((submenuItem) => (
+										<li key={submenuItem.sys.id}>
+											<NavLink to={submenuItem.fields.slug} onClick={toggleMobileMenu} className="block">
+												{submenuItem.fields.title}
+											</NavLink>
+										</li>
+									))}
+								</ul>
 							)}
+							<div className={`border border-primaryContent transition-width duration-[2000ms] ${mobileOpen ? "w-full" : "w-0"}`}></div>
 						</li>
 					))}
 				</ul>
