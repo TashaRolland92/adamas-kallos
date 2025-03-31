@@ -35,7 +35,7 @@ const Nav: React.FC = () => {
 			if (navigation) {
 				const fetchedNavItems = navigation.fields.navItems as unknown as NavigationLink[];
 				setNavItems(fetchedNavItems);
-				console.log('use effect:', fetchedNavItems);
+				// console.log('use effect:', fetchedNavItems);
                 if (fetchedNavItems && fetchedNavItems.length > 0 && fetchedNavItems[0].fields.dropdownItems && fetchedNavItems[0].fields.dropdownItems.length > 0) {
                     const submenuDetails = getSubmenuDetails(fetchedNavItems[0].fields.dropdownItems[0]);
 					setHoveredImage(submenuDetails.imageUrl);
