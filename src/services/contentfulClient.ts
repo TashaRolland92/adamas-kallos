@@ -1,8 +1,8 @@
 import { createClient } from "contentful";
 
 const client = createClient({
-	space: 'bcgrhf8n1c1q',
-	accessToken: 'BIVFCWnKZC6x0xPJ4FElU3E-7ITH3KsFU4l2MMhmHGE',
+	space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+	accessToken: import.meta.env.VITE_CONTENTFUL_API_TOKEN,
 	host: "cdn.contentful.com", // Use "preview.contentful.com" if fetching draft content
 });
 
