@@ -11,6 +11,9 @@ export default {
 			playfair: ["Playfair Display", "serif"],
 			lato: ["Lato", "sans-serif"],
 		},
+		lineHeight: {
+			'12': '3.5rem',
+		},
 		colors: {
 			primaryContent: "#0E4148",
 			babyblue: "#e4f4f3",
