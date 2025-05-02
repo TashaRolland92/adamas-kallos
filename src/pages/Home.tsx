@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Intro from "../components/Intro";
+import BookAppointment from "../components/BookAppointment";
 
 const Home: React.FC = () => {
 	return (
@@ -9,6 +10,7 @@ const Home: React.FC = () => {
 			<Header />
 			<Hero />
 			<Intro />
+			<BookAppointment />
 		</>
 	);
 };

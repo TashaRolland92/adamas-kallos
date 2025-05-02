@@ -25,6 +25,7 @@ export default {
 			'hero-mobile': "url('/src/assets/hero_mobile.webp')",
 			'hero-desktop': "url('/src/assets/hero_desktop.webp')",
 			'hero-4k': "url('/src/assets/hero_4k.webp')",
+			'book-appt': "url('/src/assets/book_appt.webp')",
 		},
 		transitionProperty: {
 			'width': 'width',
