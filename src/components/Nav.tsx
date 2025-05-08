@@ -81,7 +81,7 @@ const Nav: React.FC = () => {
 									left-0
 									right-0
 									w-screen
-									bg-babyblue/70
+									bg-babyblue/80
 									text-primaryContent
 									shadow-lg
 									transition-max-height
