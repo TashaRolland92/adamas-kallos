@@ -13,6 +13,8 @@ export default {
 		},
 		lineHeight: {
 			'12': '3.5rem',
+			'13': '4rem',
+			'14': '4.5rem',
 		},
 		colors: {
 			primaryContent: "#0E4148",
