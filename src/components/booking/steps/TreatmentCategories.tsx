@@ -45,7 +45,7 @@ const treatmentReducer = (state: TreatmentState, action: TreatmentAction): Treat
 		case "SELECT_CATEGORY":
 			return {
 				...state,
-				step: "subcategory",
+				step: action.payload.hasSubCategories ? "subcategory" : "treatment",
 				selectedCategoryId: action.payload.categoryId,
 				hasSubCategories: action.payload.hasSubCategories,
 				selectedSubcategoryId: null,
@@ -63,13 +63,16 @@ const treatmentReducer = (state: TreatmentState, action: TreatmentAction): Treat
 				case "treatment":
 					return {
 						...state,
-						step: "subcategory",
+						step: state.hasSubCategories ? "subcategory" : "category",
+						selectedSubcategoryId: null,
 					};
 				case "subcategory":
 					return {
 						...state,
 						step: "category",
 						selectedSubcategoryId: null,
+						selectedCategoryId: null,
+                        hasSubCategories: false,
 					};
 				default:
 					return state;
@@ -136,8 +139,7 @@ const TreatmentCategories = ({ onSelectedCategory }: Props) => {
 			)}
 
 			{state.step === "treatment" &&
-			state.selectedCategoryId !== null &&
-			state.selectedSubcategoryId !== null && (
+			state.selectedCategoryId !== null && (
 				<TreatmentList
 					categoryId={state.selectedCategoryId}
 					subcategoryId={state.selectedSubcategoryId}

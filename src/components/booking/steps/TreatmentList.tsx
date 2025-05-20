@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getTreatmentsForSubcategory } from "../../../api/treatments"; // we'll write this later
+import { getTreatmentsBySelection } from "../../../api/treatments"; // we'll write this later
 
 type Treatment = {
 	id: number;
@@ -7,13 +7,14 @@ type Treatment = {
 	description: string;
 	price: number;
 	duration: number;
-	subcategoryId: number;
+	subcategory_id: number | null;
 	categoryId: number;
+	subcategory_name?: string;
 };
 
 type TreatmentListProps = {
 	categoryId: number;
-	subcategoryId: number;
+	subcategoryId: number | null;
 };
 
 const TreatmentList = ({ categoryId, subcategoryId }: TreatmentListProps) => {
@@ -25,7 +26,8 @@ const TreatmentList = ({ categoryId, subcategoryId }: TreatmentListProps) => {
 			setLoading(true);
 
 			try {
-				const response = await getTreatmentsForSubcategory(categoryId, subcategoryId);
+				const response = await getTreatmentsBySelection(categoryId, subcategoryId);
+				console.log(response);
 				setTreatments(response);
 			} catch (error) {
 				console.error("Error fetching treatments...", error);
@@ -34,7 +36,13 @@ const TreatmentList = ({ categoryId, subcategoryId }: TreatmentListProps) => {
 			}
 		};
 
-		fetchTreatments();
+		if(categoryId){
+			fetchTreatments();
+		} else{
+			setTreatments([]);
+			setLoading(false);
+			console.error('No category selected');
+		}
 	}, [subcategoryId]);
 
 	return (
