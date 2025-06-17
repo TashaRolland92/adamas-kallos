@@ -19,7 +19,7 @@ const Button = ({
 }: ButtonProps) => {
 	const defaultStyles = `
 		${classes}
-		playfair
+		playfair-600
 		border
 		border-white
 		px-2
@@ -35,9 +35,14 @@ const Button = ({
 
 	if(to && !disabled){
 		return(
-			<Link to={to} className={defaultStyles} onClick={onClick}>
-				{children}
-			</Link>
+			<button
+				type={type}
+				className={defaultStyles}
+			>
+				<Link to={to} onClick={onClick}>
+					{children}
+				</Link>
+			</button>
 		);
 	}
 
