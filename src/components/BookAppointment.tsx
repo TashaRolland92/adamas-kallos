@@ -1,4 +1,5 @@
 import React from "react";
+import Button from '../components/buttons/Button';
 
 const BookAppointment: React.FC = () => {
 	return (
@@ -7,7 +8,7 @@ const BookAppointment: React.FC = () => {
 				<h3 className="uppercase playfair text-xl relative">Book Appointment</h3>
 				<h1 className="playfair-italic-700 text-6xl leading-14 mb-6">Make a reservation for unforgettable beauty.</h1>
 				<p className="playfair text-lg max-w-96 mx-auto mb-6">Trust your beauty journey to our accomplished team, bringing you the techniques and styles seen on the world's stage. Contact us today.</p>
-				<button className="playfair border border-white px-2 h-10 w-full max-w-36 uppercase transition-colors ease-in hover:bg-white hover:text-primaryContent">Book Online</button>
+				<Button to={'/booking'}>Book Online</Button>
 			</div>
 		</section>
 	);
