@@ -29,13 +29,14 @@ const Intro: React.FC = () => {
 				):(
 					<>
 						{entries && entries.map((item) => (
-							<div key={item.sys.id} className="grid grid-cols-2 gap-5">
+							<div key={item.sys.id} className="grid md:grid-cols-2 gap-5">
 								<div className="col">
 									<h3 className="
 										uppercase
 										text-primaryContent
 										playfair
-										text-xl
+										text-2xl
+										md:text-xl
 										pb-4"
 									>
 										{item.fields.heading}
@@ -43,8 +44,10 @@ const Intro: React.FC = () => {
 									<h3 className="
 										playfair-italic-700
 										text-tiffanyblue
-										text-5xl
-										leading-12"
+										text-3xl
+										leading-10
+										md:text-5xl
+										md:leading-12"
 									>
 										{item.fields.strapline}
 									</h3>
@@ -53,9 +56,10 @@ const Intro: React.FC = () => {
 									<p className="
 										playfair
 										text-primaryContent
-										text-2xl
+										text-xl
+										md:text-2xl
 										mb-2
-										text-justify"
+										md:text-justify"
 									>
 										{item.fields.paragraph}
 									</p>
