@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
 					<h3 className="playfair uppercase text-2xl sm:text-4xl lg:6xl">Diamond Beauty</h3>
 				</div>
 				<button className="arrow-btn absolute bottom-4 right-2.5">
-					<HiMiniArrowTurnRightDown className="text-white text-8xl" />
+					<HiMiniArrowTurnRightDown className="text-white text-8xl w-16 md:w-24" />
 				</button>
 			</div>
 		</section>
