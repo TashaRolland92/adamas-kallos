@@ -11,6 +11,9 @@ export default {
 			playfair: ["Playfair Display", "serif"],
 			lato: ["Lato", "sans-serif"],
 		},
+		height: {
+			'50vh': '50vh',
+		},
 		lineHeight: {
 			'12': '3.5rem',
 			'13': '4rem',
@@ -28,6 +31,7 @@ export default {
 			'hero-desktop': "url('/src/assets/hero_desktop.webp')",
 			'hero-4k': "url('/src/assets/hero_4k.webp')",
 			'book-appt': "url('/src/assets/book_appt.webp')",
+			'booking-hero-mobile': "url('/src/assets/booking_desktop.webp')",
 			'booking-hero-desktop': "url('/src/assets/booking_desktop.webp')",
 			'booking-hero-4k': "url('/src/assets/booking_4k.webp')",
 		},

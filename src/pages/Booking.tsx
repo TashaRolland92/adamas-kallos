@@ -13,9 +13,9 @@ const Booking = () => {
 	return (
 		<>
 			<Header />
-			<Hero backgroundClass="booking-hero-desktop">
-				<h1 className="playfair text-5xl md:text-7xl mb-2">Book Online</h1>
-				<p className="text-lg md:text-2xl">Choose your treatment and book in with just a few clicks.</p>
+			<Hero backgroundClass="bg-booking-hero-mobile md:bg-booking-hero-desktopretina:md:bg-booking-hero-4k h-50vh bg-bottom">
+				<h1 className="playfair-italic-700 text-4xl sm:text-5xl lg:text-6xl mb-2">Book Online</h1>
+				<p className="playfair text-2xl sm:text-2xl lg:4xl">Browse our treatments and book yours in just a few clicks...</p>
 			</Hero>
 			<div className="mt-20 p-4 max-w-xl mx-auto">
 				<h1 className="text-2xl font-semibold mb-4 text-center playfair-600 uppercase">Book an Appointment</h1>

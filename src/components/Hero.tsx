@@ -14,7 +14,6 @@ const Hero = ({
 	className = '',
 	backgroundClass = '',
 }: HeroProps) => {
-	console.log("Hero background class ", backgroundClass);
 	return (
 		<section className={`hero-section w-full flex items-end bg-cover bg-center ${backgroundClass || 'bg-hero-mobile md:bg-hero-desktop retina:md:bg-hero-4k'} ${className}`}>
 			<div className="container mx-auto px-7">
