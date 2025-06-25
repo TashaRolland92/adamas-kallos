@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import Hero from "../components/Hero";
 import TreatmentCategories from "../components/booking/steps/TreatmentCategories";
 
 const Booking = () => {
@@ -12,6 +13,10 @@ const Booking = () => {
 	return (
 		<>
 			<Header />
+			<Hero backgroundClass="booking-hero-desktop">
+				<h1 className="playfair text-5xl md:text-7xl mb-2">Book Online</h1>
+				<p className="text-lg md:text-2xl">Choose your treatment and book in with just a few clicks.</p>
+			</Hero>
 			<div className="mt-20 p-4 max-w-xl mx-auto">
 				<h1 className="text-2xl font-semibold mb-4 text-center playfair-600 uppercase">Book an Appointment</h1>
 
