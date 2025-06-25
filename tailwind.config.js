@@ -28,6 +28,8 @@ export default {
 			'hero-desktop': "url('/src/assets/hero_desktop.webp')",
 			'hero-4k': "url('/src/assets/hero_4k.webp')",
 			'book-appt': "url('/src/assets/book_appt.webp')",
+			'booking-hero-desktop': "url('/src/assets/booking_desktop.webp')",
+			'booking-hero-4k': "url('/src/assets/booking_4k.webp')",
 		},
 		transitionProperty: {
 			'width': 'width',
