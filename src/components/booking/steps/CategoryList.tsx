@@ -1,10 +1,10 @@
 import React from "react";
-import SubCategoryList from "./SubCategoryList";
 
 type Category = {
     id: number;
     name: string;
     has_subcategories: boolean;
+	image_url?: string;
 };
 
 type CategoryListProps = {
@@ -13,13 +13,16 @@ type CategoryListProps = {
 };
 
 const CategoryList = ({ categories, onCategorySelect }: CategoryListProps) => (
-    <ul>
+    <ul className="grid grid-cols-3">
         {categories.map((category) => (
             <li
                 key={category.id}
                 className="cursor-pointer"
                 onClick={() => onCategorySelect(category.id, category.has_subcategories)}
             >
+				{category.image_url && (
+					<img src={category.image_url} alt={category.name} className="test" />
+				)}
                 {category.name}
             </li>
         ))}
