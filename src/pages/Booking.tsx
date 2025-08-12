@@ -13,18 +13,18 @@ const Booking = () => {
 	return (
 		<>
 			<Header />
-			<Hero backgroundClass="bg-booking-hero-mobile md:bg-booking-hero-desktopretina:md:bg-booking-hero-4k h-50vh bg-bottom">
+			<Hero backgroundClass="bg-booking-hero-mobile md:bg-booking-hero-desktopretina:md:bg-booking-hero-4k h-50vh bg-bottom" showArrow={false}>
 				<h1 className="playfair-italic-700 text-4xl sm:text-5xl lg:text-6xl mb-2">Book Online</h1>
 				<p className="playfair text-2xl sm:text-2xl lg:4xl">Browse our treatments and book yours in just a few clicks...</p>
 			</Hero>
-			<div className="mt-20 p-4 max-w-xl mx-auto">
-				<h1 className="text-2xl font-semibold mb-4 text-center playfair-600 uppercase">Book an Appointment</h1>
+			<section className="booking-grid-container container mx-auto py-10 px-7">
+				<h1 className="text-2xl font-semibold mb-4 text-center playfair-600 uppercase">Book a Treatment with Us</h1>
 
 				{step === 1 && (
-					<>
-						<div>Step 1: Select a service</div>
+					<div className="step-one">
+						<h2>Select a treatment category</h2>
 						<TreatmentCategories onSelectedCategory={(categoryId) => setSelectedCategory(categoryId)} />
-					</>
+					</div>
 				)}
 				{step === 2 && <div>Step 2: Choose staff (optional)</div>}
 				{step === 3 && <div>Step 3: Pick a time slot</div>}
@@ -47,7 +47,8 @@ const Booking = () => {
 						Next
 					</button>
 				</div>
-			</div>
+			</section>
+
 		</>
 	);
 };
