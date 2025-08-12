@@ -105,7 +105,6 @@ const TreatmentCategories = ({ onSelectedCategory }: Props) => {
 
 	return (
 		<>
-			<h2>Select a treatment category</h2>
 			{state.step !== "category" && (
 				<button onClick={() => dispatch({ type: "RESET" })}>
 					Reset
@@ -124,6 +123,7 @@ const TreatmentCategories = ({ onSelectedCategory }: Props) => {
 					}}
 				/>
 			)}
+
 			{state.step === "subcategory" &&
 			state.selectedCategoryId !== null &&
 			state.hasSubCategories && (
