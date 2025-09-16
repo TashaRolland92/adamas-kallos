@@ -10,6 +10,10 @@ interface MainNavigationEntry extends EntrySkeletonType<{ navItems: NavigationLi
 
 export const fetchNavigation = async (): Promise<Entry<MainNavigationEntry> | null> => {
     try {
+        if (!client) {
+            return null;
+        }
+
         const response = await client.getEntries<MainNavigationEntry>({
             content_type: "navigation1",
             include: 2,
